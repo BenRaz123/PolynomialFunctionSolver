@@ -36,4 +36,4 @@ for input in inputs:
 	for coefficient in userCoefficients:
 		out = out + coefficient * (input**counter)
 		counter -= 1
-	print(f"f({input}) =\t {out}")
+	print(f"f({input}) = {out}")

@@ -1,5 +1,21 @@
 use requestty::*;
 
+fn make_eqn(coefficient_list: &Vec<f64>) -> String {
+    let mut eqn_string: String = "f(x) = ".to_owned();
+    let mut iterator: usize = coefficient_list.len()-1;
+    for number in coefficient_list {
+        let sign: String;
+        if *number < f64::from(0) {
+            sign = "-".to_owned();
+        } else {
+            sign = "+".to_owned();
+        }
+        eqn_string.push_str(&format!("{} {}x^{} ", sign, number, iterator));
+        iterator -= 1;
+    }
+    eqn_string
+}
+
 fn main() {
     let mut coefficients: Vec<f64> = Vec::new();
 
@@ -14,6 +30,6 @@ fn main() {
         let coefficient: f64 = prompt_one(question_coefficient).expect("Could not parse answer").as_float().expect("Could not convert to bool"); 
         coefficients.append(&mut vec![coefficient]);
     }
+    println!("Your equation is: {}", make_eqn(&coefficients))
 
-    println!("Your coefficients are: {:#?}", coefficients);
 }

@@ -18,7 +18,7 @@ fn make_eqn(coefficient_list: &Vec<f64>) -> String {
     eqn_string
 }
 
-fn calculate_input(input: f64, coefficients: Vec<f64>) -> f64 {
+fn calculate_input(input: f64, coefficients: &Vec<f64>) -> f64 {
     let mut result: f64 = 0.0;
     let mut iterator: i32 = ( coefficients.len() as i32 ) -1;
     for coefficient in coefficients {
@@ -70,5 +70,9 @@ fn main() {
         let question_input = Question::float("input").message("Please enter a numerical input").build();
         let input: f64 = prompt_one(question_input).expect("Could not parse answer").as_float().expect("could not convert to number");
         inputs.append(&mut vec![input]);
+    }
+
+    for input in inputs {
+        println!("f({}) = {}", input, calculate_input(input, &coefficients));   
     }
 }

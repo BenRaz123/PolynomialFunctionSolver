@@ -18,6 +18,18 @@ fn make_eqn(coefficient_list: &Vec<f64>) -> String {
     eqn_string
 }
 
+fn calculate_input(input: f64, coefficients: Vec<f64>) -> f64 {
+    let mut result: f64 = 0.0;
+    let mut iterator: i32 = ( coefficients.len() as i32 ) -1;
+    for coefficient in coefficients {
+        result += coefficient * input.powi(*&iterator);
+        if iterator != 0 {
+            iterator -= 1;
+        }
+    }
+    result
+}
+
 fn main() {
     let mut coefficients: Vec<f64> = Vec::new();
     let mut inputs: Vec<f64> = Vec::new();
